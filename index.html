@@ -14,18 +14,32 @@
             height: 100vh;
         }
 
+        .column-text {
+            font-size: 42px;
+        }
+
     </style>
 </head>
 
 <body>
 
-    <div class="column-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita quaerat laudantium nostrum hic totam illum dolorem voluptatibus nihil earum consequuntur ipsum dolor, libero, nesciunt cum assumenda molestiae animi est sapiente.</div>
+    <div class="container">
+        <div class="column-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi eligendi velit officia consequatur ipsum aliquam ratione, nulla quisquam illum aspernatur expedita iure cum voluptatibus ad, soluta qui. Minima dolor, quam.</div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <script src="column-text.js"></script>
+
     <script>
         $('.column-text').columnText({
-            diameter: 200
+            lineHeight: 10,
+            diameter: 400,
+            rotateX: 0,
+            rotateY: 0,
+            speed: 0.1,
+            rotationDirection: 'left',
+            verticalDirection: 'top'
         });
     </script>
 </body>

@@ -3,8 +3,11 @@ $.fn.columnText = function(options) {
     var settings = $.extend({
         lineHeight: 10,
         diameter: 400,
-        rotateX: '-35deg',
-        rotateY: '-9deg'
+        rotateX: 0,
+        rotateY: 0,
+        speed: 0.1,
+        rotationDirection: 'left',
+        verticalDirection: 'top'
     }, options);
 
     var lineHeight = settings.lineHeight;
@@ -21,36 +24,37 @@ $.fn.columnText = function(options) {
         radioCircle = 0,
         diameter = 0;
 
-
-    var originalContent = this.text();
+    var textColumn = this;
+    var originalContent = textColumn.text();
     var arrayContent = originalContent.split('');
     var columnTextContent = '';
 
-    this.html('');
+    textColumn.html('');
 
     columnTextContent = '';
     for (var i = 0; i < arrayContent.length; i++) {
         columnTextContent += '<div class="coltext-item">' + arrayContent[i] + '</div>'
     }
-    this.html(columnTextContent);
+    textColumn.html(columnTextContent);
 
-    var children = this.find('.coltext-item');
+    var children = textColumn.find('.coltext-item');
     var elLength = children.length;
 
-    this.css({
+    textColumn.css({
         position: 'absolute',
         transformStyle: 'preserve-3d',
         top: '50%',
         left: '50%',
-        perspective: '800px',
-        transform: 'rotateX(' + settings.rotateX + ') rotateY(' + settings.rotateY + ')'
+        // perspective: '800px',
+        transform: 'rotateX(' + settings.rotateX + 'deg) rotateY(' + settings.rotateY + 'deg)'
     });
 
     children.css({
         position: 'absolute',
         transformStyle: 'preserve-3d',
         transformOrigin: '0 0',
-        textAlign: 'center',
+        textAlign: 'center'
+        // backfaceVisibility: 'hidden'
     });
 
     children.each(function() {
@@ -97,4 +101,43 @@ $.fn.columnText = function(options) {
             currentDeg += circleWidthSection;
         });
     }
+
+    var startRotateX = settings.rotateX;
+    var startRotateY = settings.rotateY;
+    var rotationDirection;
+    var verticalDirection;
+
+    switch (settings.rotationDirection) {
+    case 'left':
+        rotationDirection = -1;
+        break;
+    case 'right':
+        rotationDirection = 1;
+        break;
+    default:
+        rotationDirection = 0;
+    }
+
+    switch (settings.verticalDirection) {
+    case 'top':
+        verticalDirection = -1;
+        break;
+    case 'bottom':
+        verticalDirection = 1;
+        break;
+    default:
+        verticalDirection = 0
+    }
+
+    function animation(timestamp) {
+        if (!startRotateY) startRotateY = timestamp;
+        var progressRotateY = timestamp - startRotateY;
+        textColumn.css({
+            transform: 'rotateX(' + startRotateX + 'deg) rotateY(' + progressRotateY * settings.speed * rotationDirection + 'deg)  translateY('+ progressRotateY * settings.speed * verticalDirection +'px)'
+        });
+        window.requestAnimationFrame(animation);
+    }
+
+    window.requestAnimationFrame(animation);
+
 };
