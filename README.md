@@ -17,4 +17,4 @@ $('.column-text').columnText({
 
 ![alt text][logo]
 
-[logo]: https://github.com/adrielzarate/column-text/column-text.jpg "Column Text"
+[logo]: https://github.com/adrielzarate/column-text/blob/master/column-text.jpg "Column Text"
