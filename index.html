@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Column Text</title>
+    <style>
+
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="column-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita quaerat laudantium nostrum hic totam illum dolorem voluptatibus nihil earum consequuntur ipsum dolor, libero, nesciunt cum assumenda molestiae animi est sapiente.</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="column-text.js"></script>
+    <script>
+        $('.column-text').columnText({
+            diameter: 200
+        });
+    </script>
+</body>
+
+</html>
